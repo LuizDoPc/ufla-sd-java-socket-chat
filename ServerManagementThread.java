@@ -20,15 +20,15 @@ public class ServerManagementThread extends Thread{
             BufferedReader serverInput = new BufferedReader(new InputStreamReader( socket.getInputStream()));
 
             this.userName = serverInput.readLine();
-            System.out.println("[ " + this.userName + " entrou na sala! ]");
-            this.server.SpreadMessages("[ " + this.userName + " entrou na sala! ]", this);
+            System.out.println("Servidor: " + this.userName + " acaba de entrar na sala");
+            this.server.SpreadMessages("Servidor: " + this.userName + " acaba de entrar na sala", this);
             SendMessage(this.server.ListUsers());
 
             while (true) {
                 String inputLine = serverInput.readLine();
-                this.server.SpreadMessages("[" + this.userName + "]: "+ inputLine, this);
+                this.server.SpreadMessages("-" + this.userName + ": "+ inputLine, this);
                 if (inputLine.equals(":q")) {
-                    System.out.println("[ " + this.userName + " entrou na sala! ]");
+                    System.out.println("Servidor: " + this.userName + " acaba de entrar na sala");
                     break;
                 }
             }
@@ -48,6 +48,6 @@ public class ServerManagementThread extends Thread{
     }
 
     public String getUserName() {
-        return ("[" + this.userName + "]");
+        return (this.userName);
     }
 }
